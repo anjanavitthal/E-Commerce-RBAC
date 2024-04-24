@@ -14,7 +14,7 @@ export class BackendConfigService {
       username: this.configService.get('DB_USERNAME'),
       password: this.configService.get<string>('DB_PASSWORD'),
       database: this.configService.get('DB_NAME', 'e-commerce'),
-      entities: [ __dirname + '/**/*.entity{.ts,.js}'],
+      entities: [ __dirname + '/../**/*.entity{.ts,.js}'],
       synchronize: true,
     };
   }

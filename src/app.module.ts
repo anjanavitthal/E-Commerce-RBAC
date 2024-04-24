@@ -8,20 +8,10 @@ import { BackendConfigModule } from './config/config.module';
 
 @Module({
   imports: [
-    // TypeOrmModule.forRootAsync({
-    //  imports: [BackendConfigModule],
-    //  inject: [BackendConfigService],
-    //  useFactory: (backendConfigService: BackendConfigService) => backendConfigService.typeOrmConfig
-    // }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'e-commerce',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+    TypeOrmModule.forRootAsync({
+      useFactory: (backendConfigService: BackendConfigService) => backendConfigService.typeOrmConfig,
+      imports: [BackendConfigModule],
+      inject: [BackendConfigService],
     }),
     UsersModule,
     AuthModule,
